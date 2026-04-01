@@ -1,0 +1,4 @@
+rabbitmq_messages.log
+rabbitmq/
+venv/
+__pycache__/

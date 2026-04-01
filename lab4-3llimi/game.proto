@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package connectfour;
+
+service ConnectFour {
+  rpc CreateGame (CreateGameRequest) returns (Game);
+  rpc GetGame (GetGameRequest) returns (Game);
+  rpc MakeMove (MakeMoveRequest) returns (Game);
+}
+
+enum Mark {
+  MARK_UNSPECIFIED = 0;
+  MARK_RED = 1;
+  MARK_YELLOW = 2;
+}
+
+message Move {
+  Mark mark = 1;
+  int32 column = 2;
+}
+
+message Game {
+  int32 id = 1;
+  repeated Move moves = 2;
+  bool is_finished = 3;
+  Mark turn = 4;
+  optional Mark winner = 5;
+}
+
+message CreateGameRequest {}
+
+message GetGameRequest {
+  int32 game_id = 1;
+}
+
+message MakeMoveRequest {
+  int32 game_id = 1;
+  Move move = 2;
+}
